@@ -8,7 +8,7 @@ An application that supports active gym-goers to find partners to help them achi
 
 ## Visuals
 With this project being in it's early stages, our best visualization is this high-quality Figma prototype created by Holly Qian.
-> [Link to prototype](https://discord.com/channels/1024433106779910194/1024433106779910197/1034489124566085762)
+> [Link to prototype](https://www.figma.com/file/6mivUjK3v799kDMI8xjUri/Let%27s-Get-Physical-Prototype)
 
 
 ## Technology
