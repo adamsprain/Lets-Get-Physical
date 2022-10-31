@@ -1,0 +1,16 @@
+
+.main-button {
+    background-color: #FF705C !important;
+    border-color: #FF705C !important;
+    color: white !important;
+}
+
+.main-button:hover {
+    background-color: #C85A4B !important;
+}
+
+.secondary-button {
+    background-color: #FFAD5B !important;
+    border-color: #FFAD5B !important;
+    color: white !important;
+}
