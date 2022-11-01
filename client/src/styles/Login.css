@@ -1,0 +1,62 @@
+.login-page {
+    background-image: linear-gradient(to right, #ff5e58 , #fff446);
+    min-height: 100vh;
+}
+
+.header {
+    color: white;
+    font-weight: 800;
+    font-size: 50px;
+}
+
+.error {
+    display: block;
+    background-color: red;
+    color: white;
+    width: fit-content;
+    height: 50px;
+    padding: 5px;
+}
+
+.success {
+    display: block;
+    background-color: lightblue;
+    color: black;
+    width: fit-content;
+    height: 50px;
+    padding: 5px;
+}
+
+.login-card {
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    width: 500px;
+    height: 600px !important;
+}
+
+.signup-button {
+    color: white !important;
+    background-color: #299417 !important;
+    border-color: #299417 !important;
+}
+
+label {
+    font-weight: 600;
+}
+.icon {
+    padding: 4px;
+    position: absolute;
+    top: 25%;
+    left:2px;
+    transform: translateY(-50%);
+    height: 20px;
+}
+
+.input {
+    height: 50px;
+    box-sizing:border-box;
+    padding-left: 1.5rem;
+}
