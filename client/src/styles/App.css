@@ -14,3 +14,9 @@
     border-color: #FFAD5B !important;
     color: white !important;
 }
+
+.secondary-button:hover {
+    background-color: #E5994D !important;
+    border-color: #E5994D !important;
+    color: white !important;
+}
