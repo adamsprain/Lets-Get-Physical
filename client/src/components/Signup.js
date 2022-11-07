@@ -26,7 +26,7 @@ function Login() {
                         <h1 style={{marginTop: 30}}>
                             <ProfileIcon></ProfileIcon>
                         </h1>
-                        <h3 style={{marginBottom: 30}}>Sign In</h3>
+                        <h3 style={{marginBottom: 30}}>Create an account</h3>
                         <div style={{textAlign: "left"}}>
                             <label>Username</label>
                         </div>
