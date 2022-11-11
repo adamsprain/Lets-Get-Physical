@@ -1,7 +1,7 @@
 const { User } = require("../models/user_model");
 const express = require("express");
 
-// This router will handle user GET requests
+// This router will return all users in database
 const user_router = express.Router();
 user_router.get("/", async (req, res) => {
     const users = await User.find()
