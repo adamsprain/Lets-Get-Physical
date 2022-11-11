@@ -1,6 +1,13 @@
 const { User } = require("../models/user_model");
 const express = require("express");
 
+// This router will handle user GET requests
+const user_router = express.Router();
+user_router.get("/", async (req, res) => {
+    const users = await User.find()
+    res.send(users)
+})
+
 // This router handle user POST requests
 user_router.post("/", async (req, res) => {
     // Pull user information from request
