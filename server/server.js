@@ -13,11 +13,6 @@ app.use(express.json());
 // Use /api/users as the address for sending user requests
 app.use("/api/users", users);
 
-// Api Header Page, for debugging
-app.get("/", (req, res) => {
-  res.send("Welcome to our user api...")
-});
-
 // Checks to ensure port is not in use,
 // and prints port that server is running on.
 app.listen(port, () => {

@@ -4,7 +4,9 @@ const express = require("express");
 // This router will return all users in database
 const user_router = express.Router();
 user_router.get("/", async (req, res) => {
-    const users = await User.find()
+    // Find all users and sort in reverse order
+    const users = await User.find().sort({ unique_user_id: -1 })
+    // Returns user object to requestee
     res.send(users)
 })
 
