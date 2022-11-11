@@ -26,8 +26,7 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest",
-      "react/jsx-runtime"
+      "react-app/jest"
     ],
     "rules": {
       "react/react-in-jsx-scope": "off"
