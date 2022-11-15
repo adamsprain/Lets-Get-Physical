@@ -1,4 +1,3 @@
-const { Int32 } = require("mongodb");
 const mongoose = require("mongoose");
 
 // Creates a template for components to create documents to
