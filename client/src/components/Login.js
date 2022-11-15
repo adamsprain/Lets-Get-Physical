@@ -6,10 +6,14 @@ import {LockIcon} from "../icons/LockIcon";
 import {UserIcon} from "../icons/UserIcon";
 import "../styles/App.css";
 import "../styles/Login.css";
+import {RemoveScrollBar} from "react-remove-scroll-bar";
 
+//functional component which returns the display of the login page
 function Login() {
     return (
+        //uh this is the div that holds the card component of the login lol
         <div className="login-page" style={{display: "flex", justifyContent: "center"}}>
+            <RemoveScrollBar></RemoveScrollBar>
             <div style={{marginTop: 40}}>
                 <h1 className="header">Let's Get Physical</h1>
             </div>
@@ -46,7 +50,7 @@ function Login() {
                             <div className="icon">
                                 <LockIcon></LockIcon>
                             </div>
-                            <input type="text" style={{height: 40, width: 350}}/>
+                            <input type="text" style={{height: 40, width: 350, paddingLeft: 40}}/>
                         </div>
                         <div>
                             <Button className="main-button"

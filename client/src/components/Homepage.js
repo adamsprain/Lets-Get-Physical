@@ -13,12 +13,12 @@ function Home() {
             <RemoveScrollBar></RemoveScrollBar>
             <div style={{minWidth: 1500}}>
                 <img src={image} className="main-image" alt=""/>
-                <div style={{textAlign: "center", position: "relative", marginLeft: 80}}>
+                <div style={{textAlign: "center", position: "relative", marginLeft: 90}}>
                     <h1 className="home">Find Your Swolemate!</h1>
-                    <Link to="/login"><Button className="main-button" size="lg"
+                    <Link to="/signup"><Button className="main-button" size="lg"
                                               style={{width: 250, marginRight: 50}}>
                         Create an Account </Button></Link>
-                    <Link to="/signup"><Button className='secondary-button' size="lg"
+                    <Link to="/login"><Button className='secondary-button' size="lg"
                                                style={{width: 250}}>
                         Login </Button>
                     </Link>

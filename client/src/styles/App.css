@@ -20,3 +20,26 @@
     border-color: #E5994D !important;
     color: white !important;
 }
+
+.nav {
+    background-color: black!important;
+    height: 65px;
+}
+
+.nav-bar-button {
+    background-color: white!important;
+    color: black!important;
+    border-color: white!important;
+    font-weight: 500 !important;
+    font-size: 25px!important;
+    width: 150px;
+}
+
+.nav-bar-button:hover {
+    background-color: #D3D3D3!important;
+    border-color: #D3D3D3!important;
+}
+
+.logo {
+    width: 75px;
+}
