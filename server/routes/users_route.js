@@ -10,16 +10,31 @@ user_router.get("/", async (req, res) => {
     res.send(users)
 })
 
-// This router handle user POST requests
+/** This router handle user POST requests
+ * @param {File} req: Must be fed a JSON document of the following style:
+ {
+    // Required:
+    "unique_user_id" : String,
+    "username": String,
+    "password": String,
+    // Optionals:
+    "name": String,
+    "age": Number (int),
+    "bio" : String
+ }
+*/
 user_router.post("/", async (req, res) => {
     // Pull user information from request
-    const { unique_user_id, username, password } = req.body;
+    const { unique_user_id, username, password, name, age, bio } = req.body;
 
     // Create user object from user information
     let user = new User({
         unique_user_id,
         username,
         password,
+        name,
+        age,
+        bio
     });
 
     try{
@@ -34,4 +49,5 @@ user_router.post("/", async (req, res) => {
     }
 })
 
+// Exports router for outside use
 module.exports = user_router;
