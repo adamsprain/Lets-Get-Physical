@@ -10,6 +10,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
+                {/*Navigational bar overlayed on other components regardless of the page*/}
                 <Navbar/>
                 {/*Routing component which calls the functional component of each page and handles flow between them */}
                 <Routes>

@@ -1,14 +1,12 @@
+/*Styling for the font on the homepage based on color shadowing*/
 h1.home {
     font-size: 70px;
     color: #FF4A37;
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.8);
 }
 
+/*Allows image to extend the width of the screen*/
 .main-image {
-    width: auto;
-    height: 90%;
-}
-
-.container {
     width: 100%;
+    height: auto;
 }

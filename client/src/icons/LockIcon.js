@@ -1,4 +1,4 @@
-//variable which displays the icon used in the password text box
+//variable which displays the icon used in the password text box of the login page
 export const LockIcon = () => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#5C5D5F" className="bi bi-lock-fill"
