@@ -7,7 +7,7 @@ import logo from "../images/AppLogo.png";
 /*Functional component which will display the navbar overlayed on every other component page*/
 export default function Navbar() {
     return (
-        <nav className="navbar navbar-expand-lg" style={{backgroundColor: "black", height: "2%"}}>
+        <nav className="navbar navbar-expand-lg" style={{backgroundColor: "black"}}>
             <div className="container-fluid">
                 {/*Allows the icon and title to be clickable so user can return to homepage*/}
                 <Link to="/" className="site-title" style={{display: "flex", textDecoration: "none"}}>
