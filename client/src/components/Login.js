@@ -6,13 +6,11 @@ import {LockIcon} from "../icons/LockIcon";
 import {UserIcon} from "../icons/UserIcon";
 import "../styles/App.css";
 import "../styles/Login.css";
-import {RemoveScrollBar} from "react-remove-scroll-bar";
 
 //functional component which returns the display of the login page
 function Login() {
     return (
         <div className="info-page" style={{display: "flex", justifyContent: "center"}}>
-            <RemoveScrollBar></RemoveScrollBar>
             <div style={{marginTop: 40}}>
                 <h1 className="header">Let's Get Physical</h1>
             </div>
