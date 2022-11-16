@@ -1,3 +1,4 @@
+//variable which displays the icon used in the card of the signup/login page
 export const ProfileIcon = () => {
     return (
         <svg

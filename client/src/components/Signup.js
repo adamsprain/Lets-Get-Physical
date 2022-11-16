@@ -4,10 +4,14 @@ import Button from "react-bootstrap/Button";
 import {ProfileIcon} from "../icons/ProfileIcon";
 import "../styles/App.css";
 import "../styles/Login.css";
+import {RemoveScrollBar} from "react-remove-scroll-bar";
 
-function Login() {
+/*Functional component which displays the login lage*/
+/*See Login functional component for specific comments*/
+function Signup() {
     return (
-        <div className="login-page" style={{display: "flex", justifyContent: "center"}}>
+        <div className="info-page" style={{display: "flex", justifyContent: "center"}}>
+            <RemoveScrollBar></RemoveScrollBar>
             <div style={{marginTop: 40}}>
                 <h1 className="header">Let's Get Physical</h1>
             </div>
@@ -31,8 +35,7 @@ function Login() {
                             <label>Username</label>
                         </div>
                         <div style={{position: "relative"}}>
-                            <input type="text" style={{height: 40, width: 350, marginBottom: 10, paddingLeft: 40}}
-                                   className="input"/>
+                            <input type="text" style={{height: 40, width: 350, marginBottom: 10}}/>
                         </div>
                         <div style={{textAlign: "left"}}>
                             <label>Password</label>
@@ -59,4 +62,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Signup;

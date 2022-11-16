@@ -1,22 +1,52 @@
-
+/*Basic styling for the button which will be used throughout the site*/
 .main-button {
     background-color: #FF705C !important;
     border-color: #FF705C !important;
     color: white !important;
 }
 
+/*Changes color of the main button when user hovers the button*/
 .main-button:hover {
     background-color: #C85A4B !important;
 }
 
+/*Basic styling for a second button which will be used throughout the site*/
 .secondary-button {
     background-color: #FFAD5B !important;
     border-color: #FFAD5B !important;
     color: white !important;
 }
 
+/*Changes the color of the secondary button when user hovers the button*/
 .secondary-button:hover {
     background-color: #E5994D !important;
     border-color: #E5994D !important;
     color: white !important;
+}
+
+/*Styling for the navbar overlayed on each page*/
+.nav {
+    background-color: black!important;
+    height: 65px;
+}
+
+/*Styling for the button which will be displayed on the navbar*/
+.nav-bar-button {
+    background-color: white!important;
+    color: black!important;
+    border-color: white!important;
+    font-weight: 500 !important;
+    font-size: 25px!important;
+    width: 150px;
+}
+
+/*Changes the color when suer hovers the navbar button*/
+.nav-bar-button:hover {
+    background-color: #D3D3D3!important;
+    border-color: #D3D3D3!important;
+}
+
+/*Changes dimensions of the logo displayed on the navbar*/
+.logo {
+    width: 75px;
 }
