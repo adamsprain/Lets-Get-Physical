@@ -24,12 +24,6 @@
     color: white !important;
 }
 
-/*Styling for the navbar overlayed on each page*/
-.nav {
-    background-color: black!important;
-    height: 65px;
-}
-
 /*Styling for the button which will be displayed on the navbar*/
 .nav-bar-button {
     background-color: white!important;
