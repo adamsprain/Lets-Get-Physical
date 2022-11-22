@@ -4,13 +4,17 @@ const mongoose = require("mongoose");
 // submit to the mongoDB collection
 const userSchema = new mongoose.Schema({
     // Required:
-    unique_user_id: { type: String, required: true},
     username: { type: String, required: true},
     password: { type: String, required: true},
     // Optional:
-    name: { type: [String], default: ["TestFirst", "TestLast"]},
+    firstname: { type: String, default: "FirstName"},
+    lastname: { type: String, default: "LastName"},
     age: { type: Number, default: 18},
-    bio: { type: String, default: "This user does not have a bio"}
+    university: {type: String, default: "UW Madison"},
+    bio: { type: String, default: "This user does not have a bio"},
+    gender: {type: String, default: "Not specified"},
+    email: {type: String, default: "Not specified"},
+    phone: {type: String}
 });
 
 // Creates wrapper for mongoose schema as a model

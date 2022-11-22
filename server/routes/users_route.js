@@ -14,27 +14,35 @@ user_router.get("/", async (req, res) => {
  * @param {File} req: Must be fed a JSON document of the following style:
  {
     // Required:
-    "unique_user_id" : String,
     "username": String,
     "password": String,
     // Optionals:
-    "name": String,
+    "firstname": String,
+    "lastname": String,
     "age": Number (int),
-    "bio" : String
+    "university": String,
+    "bio" : String,
+    "gender": String,
+    "email": String,
+    "phone": String
  }
 */
 user_router.post("/", async (req, res) => {
     // Pull user information from request
-    const { unique_user_id, username, password, name, age, bio } = req.body;
+    const { username, password, firstname, lastname, age, university, bio, gender, email, phone } = req.body;
 
     // Create user object from user information
     let user = new User({
-        unique_user_id,
-        username,
-        password,
-        name,
-        age,
-        bio
+        username, 
+        password, 
+        firstname, 
+        lastname, 
+        age, 
+        university, 
+        bio, 
+        gender, 
+        email,
+        phone
     });
 
     try{
@@ -47,6 +55,54 @@ user_router.post("/", async (req, res) => {
         // Log error for debugging
         console.log(error.message);
     }
+})
+
+
+
+/** This router handle user UPDATE requests
+ * @param {File} req: Must be fed a JSON document of the following style:
+ {
+    // Required:
+    "_id" : String,
+    // Optionals:
+    "firstname": String,
+    "lastname": String,
+    "age": Number (int),
+    "university": String,
+    "bio" : String,
+    "gender": String,
+    "email": String,
+    "phone": String
+ }
+*/
+user_router.put("/:id", async (req, res) => {
+    // Update user record by id
+    let conditions = {_id: req.params.id};
+    User.findByIdAndUpdate(conditions, req.body)
+    .exec()
+    .then(doc => {
+        if (!doc) { return res.status(404).end(); }
+        return res.status(200).end();
+    })
+})
+
+/** This router handle user DELETE requests
+ * @param {File} req: Must be fed a JSON document of the following style:
+ {
+    // Required:
+    "_id" : String
+ }
+*/
+user_router.delete("/:id", async (req, res) => {
+    // Delete user record by id
+    User
+    .findByIdAndRemove(req.params.id)
+    .exec()
+    .then(doc => {
+        if (!doc) {return res.status(404).end(); }
+        return res.status(204).end();
+    })
+    .catch(err => next(err));
 })
 
 // Exports router for outside use
