@@ -58,6 +58,7 @@ function Signup() {
                     position: "absolute",
                     width: "100%",
                     height: "100vh",
+                    paddingTop: 10,
                 }}
             >
                 <Card className="login-card">
