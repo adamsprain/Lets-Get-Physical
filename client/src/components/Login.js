@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import {ProfileIcon} from "../icons/ProfileIcon";
@@ -6,9 +6,28 @@ import {LockIcon} from "../icons/LockIcon";
 import {UserIcon} from "../icons/UserIcon";
 import "../styles/App.css";
 import "../styles/Login.css";
+import {useNavigate} from "react-router-dom";
 
 //functional component which returns the display of the login page
 function Login() {
+    //to send data to new page
+    const nav = useNavigate();
+
+    //state for form data
+    const [formData, setFormData] = useState({
+        username: "",
+        password: "",
+    })
+
+    const handleInputData = input => e => {
+        const { value } = e.target;
+        // update prev state with new data
+        setFormData(prevState => ({
+            ...prevState,
+            [input]: value
+        }));
+    }
+
     return (
         <div className="info-page" style={{display: "flex", justifyContent: "center"}}>
             <div style={{marginTop: 40}}>

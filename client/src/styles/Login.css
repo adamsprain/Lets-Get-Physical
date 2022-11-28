@@ -19,7 +19,17 @@
     text-align: center;
     align-content: center;
     width: 500px;
-    height: 550px !important;
+    height: 560px !important;
+}
+
+.prompt-card {
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    height: 800px;
+    width: 600px;
 }
 
 /*Changes font width for each textbox label*/
@@ -35,4 +45,33 @@ label {
     left:2px;
     transform: translateY(-50%);
     height: 20px;
+}
+
+.user-input {
+    height: 40px;
+    width: 350px;
+    margin-bottom: 10px;
+}
+
+.error {
+    display: block;
+    background-color: white;
+    color: red;
+    width: fit-content;
+    height: 20px;
+    padding: 5px;
+}
+
+.success {
+    display: block;
+    background-color: white;
+    color: blueviolet;
+    width: fit-content;
+    height: 20px;
+    padding: 5px;
+}
+
+.messages{
+    display: flex;
+    justify-content: center;
 }

@@ -13,7 +13,7 @@ function Home() {
                 {/*Displays the large banner-like image on the homepage*/}
                 <img src={image} className="main-image" alt=""/>
                 {/*Div used to center the buttons and text that user can use to navigate the site*/}
-                <div style={{textAlign: "center", position: "relative", marginLeft: 80}}>
+                <div style={{textAlign: "center", position: "relative", marginLeft: 70}}>
                     <h1 className="home">Find Your Swolemate!</h1>
                     {/*Button which directs the user to the signup page*/}
                     <Link to="/signup"><Button className="main-button" size="lg"
