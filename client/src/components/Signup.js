@@ -47,9 +47,6 @@ function Signup() {
 
     return (
         <div className="info-page" style={{display: "flex", justifyContent: "center"}}>
-            <div style={{marginTop: 40}}>
-                <h1 className="header">Let's Get Physical</h1>
-            </div>
             <div
                 style={{
                     display: "flex",
