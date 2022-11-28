@@ -20,6 +20,8 @@ function SignupPrompt() {
     const [formData, setFormData] = useState({
         username: loc.state.username,
         password: loc.state.password,
+        email: loc.state.email,
+        phonenumber: loc.state.phoneNumber,
         firstname: "",
         lastname: "",
         location: "",

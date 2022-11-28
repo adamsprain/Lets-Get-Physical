@@ -13,7 +13,10 @@ function Signup() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
+    const[email, setEmail] = useState("");
+    const[phoneNumber, setPhoneNumber] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+
 
     const handleSubmit = () => {
         if (username === "" || password === "" || password2 === "") {
@@ -28,7 +31,17 @@ function Signup() {
             setErrorMessage("Please enter a password 8 characters or longer")
             return;
         }
-        nav("/prompt", {state: {username, password}});
+        let regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!regEmail.test(email)) {
+            setErrorMessage("Invalid email format");
+            return;
+        }
+        let regPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+        if (!regPhone.test(phoneNumber)) {
+            setErrorMessage("Invalid phone number format");
+            return;
+        }
+        nav("/prompt", {state: {username, password, email, phoneNumber}});
         window.location.reload();
     }
 
@@ -43,7 +56,16 @@ function Signup() {
 
     const handlePassword2 = (e) => {
         setPassword2(e.target.value);
-    };
+    }
+
+    const handlePhoneNumber = (e) => {
+        setPhoneNumber(e.target.value);
+    }
+
+    const handleEmail = (e) => {
+        setEmail(e.target.value);
+    }
+
 
     return (
         <div className="info-page" style={{display: "flex", justifyContent: "center"}}>
@@ -106,10 +128,40 @@ function Signup() {
                                 onChange={handlePassword2}
                                 value={password2}
                                 type="password"
-                                style={{height: 40, width: 350}}
+                                className="user-input"
                                 minLength="8"
                                 maxLength="20"
                                 pattern = {password}
+                                required
+                            />
+                            <span className="validity"></span>
+                        </div>
+                        <div style={{textAlign: "left"}}>
+                            <label>Email</label>
+                        </div>
+                        <div style={{position: "relative"}}>
+                            <input
+                                id="email"
+                                onChange={handleEmail}
+                                value={email}
+                                type="email"
+                                className="user-input"
+                                maxLength="50"
+                                required
+                            />
+                            <span className="validity"></span>
+                        </div>
+                        <div style={{textAlign: "left"}}>
+                            <label>Phone Number</label>
+                        </div>
+                        <div style={{position: "relative"}}>
+                            <input
+                                id="phoneNumber"
+                                onChange={handlePhoneNumber}
+                                value={phoneNumber}
+                                type="text"
+                                style={{height: 40, width: 350}}
+                                maxLength="50"
                                 required
                             />
                             <span className="validity"></span>
