@@ -20,16 +20,16 @@ user_router.get("/", async (req, res) => {
     "firstname": String,
     "lastname": String,
     "age": Number (int),
-    "university": String,
+    "location": String,
     "bio" : String,
     "gender": String,
     "email": String,
-    "phone": String
+    "phonenumber": String
  }
 */
 user_router.post("/", async (req, res) => {
     // Pull user information from request
-    const { username, password, firstname, lastname, age, university, bio, gender, email, phone } = req.body;
+    const { username, password, firstname, lastname, age, location, bio, gender, email, phonenumber } = req.body;
 
     // Create user object from user information
     let user = new User({
@@ -38,11 +38,11 @@ user_router.post("/", async (req, res) => {
         firstname, 
         lastname, 
         age, 
-        university, 
+        location, 
         bio, 
         gender, 
         email,
-        phone
+        phonenumber
     });
 
     try{
@@ -68,11 +68,11 @@ user_router.post("/", async (req, res) => {
     "firstname": String,
     "lastname": String,
     "age": Number (int),
-    "university": String,
+    "location": String,
     "bio" : String,
     "gender": String,
     "email": String,
-    "phone": String
+    "phonenumber": String
  }
 */
 user_router.put("/:id", async (req, res) => {

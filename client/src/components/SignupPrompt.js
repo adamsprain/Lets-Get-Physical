@@ -24,7 +24,7 @@ function SignupPrompt() {
         phonenumber: loc.state.phoneNumber,
         firstname: "",
         lastname: "",
-        location: "",
+        location: "", 
         age: 1,
         gender: "",
         bio: "",
@@ -53,7 +53,7 @@ function SignupPrompt() {
             body: JSON.stringify(formData)
         };
 
-        fetch("/auth/signup", requestOptions)
+        fetch("http://localhost:5000/api/users", requestOptions)
             .then((res) => res.json())
             .then((result) => {
                 console.log(result);
