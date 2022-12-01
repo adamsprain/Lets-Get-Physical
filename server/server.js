@@ -22,8 +22,7 @@ app.use(express.json());
 // Use /api/users as the address for sending user requests
 app.use("/api/users", users);
 
-// Checks to ensure port is not in use,
-// and prints port that server is running on.
+// Logs the port that the server is running on
 app.listen(port, () => {
   console.log("Server running on port " + port);
 });
