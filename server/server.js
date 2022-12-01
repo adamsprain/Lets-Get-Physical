@@ -24,7 +24,7 @@ app.use("/api/users", users);
 
 // Logs the port that the server is running on
 app.listen(port, () => {
-  console.log("Server running on port " + port);
+    console.log("Server running on port " + port);
 });
 
 // Mongoose connects to MongoDB database
