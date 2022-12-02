@@ -22,6 +22,7 @@
     height: 560px;
 }
 
+/*Styling for the prompt page since the card contains more info*/
 .prompt-card {
     background-color: white;
     justify-content: center;
@@ -47,12 +48,14 @@ label {
     height: 20px;
 }
 
+/*Textbox styling for the signup/login/prompt pages*/
 .user-input {
     height: 40px;
     width: 350px;
     margin-bottom: 10px;
 }
 
+/*Used for error message on login/signup/prompt page which appears*/
 .error {
     display: block;
     background-color: white;
@@ -62,15 +65,7 @@ label {
     padding: 5px;
 }
 
-.success {
-    display: block;
-    background-color: white;
-    color: blueviolet;
-    width: fit-content;
-    height: 20px;
-    padding: 5px;
-}
-
+/*Div styling which contains the actual error messaging, mostly for positioning*/
 .messages{
     display: flex;
     justify-content: center;
