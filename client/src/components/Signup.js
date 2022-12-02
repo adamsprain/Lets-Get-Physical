@@ -14,6 +14,7 @@ function Signup() {
 
     const [username, setUsername] = useState(""); //username state defaulted to an empty string
     const [password, setPassword] = useState(""); //password state defaulted to an empty string
+    //CR: Change variable name to be more self explanatory
     const [password2, setPassword2] = useState(""); //re-enter password state defaulted to an empty string
     const [email, setEmail] = useState(""); //email state defaulted to an empty string
     const [phoneNumber, setPhoneNumber] = useState(""); //phone number state defaulted to an empty string
@@ -29,6 +30,7 @@ function Signup() {
             return;
         }
         //checks to make sure the re-entered password matches
+        //CR: Add flagging so error message stays up to date with states of all inputs
         if (password !== password2) {
             setErrorMessage("Passwords do not match")
             return;
@@ -40,6 +42,8 @@ function Signup() {
         }
         //regex used to check the formatting of the email
         //(must contain @ symbol followed by characters, and a "." followed by at least 2 characters)
+        //CR: link where i stole this from
+        //CR: look into commenting regex
         let regEmail =
             /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         //checks user provided email follows the correct email format
@@ -53,6 +57,8 @@ function Signup() {
         //6306666666
         //630-666-6666
         //(630) 666-6666
+        //CR: Show where i stole this from
+        //CR: Add a label to provide a sample format they can follow (or a default in the textfield)
         let regPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
         //checks user provided phone number follows the correct format
         if (!regPhone.test(phoneNumber)) {
@@ -113,6 +119,7 @@ function Signup() {
                         <h3 style={{marginBottom: 30}}>Create an account</h3>
                         {/*Each label which displays what the textbox and/or dropdown will be used for*/}
                         {/*Will be repeated throughout the remaining card body*/}
+                        {/*CR: Maybe move label above textbox (if it doesn't mess with styling)*/}
                         <div style={{textAlign: "left"}}>
                             <label>Username</label>
                         </div>
@@ -137,7 +144,7 @@ function Signup() {
                             <input
                                 id="pass1"
                                 onChange={handlePassword}
-                                value={password}
+                                value={password} //ensures that the text is encrypted for security purposes
                                 type="password"
                                 className="user-input"
                                 minLength="8"
@@ -202,6 +209,7 @@ function Signup() {
                                     }}
                                     onClick={handleSubmit}
                             >
+                                {/*CR: Change to "next" button*/}
                                 Create Account
                             </Button>
                         </div>

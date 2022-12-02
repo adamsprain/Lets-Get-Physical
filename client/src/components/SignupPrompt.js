@@ -28,6 +28,7 @@ function SignupPrompt() {
         firstname: "",
         lastname: "",
         location: "",
+        /*CR: Change default age to 18*/
         age: 1,
         gender: "",
         bio: "",
@@ -60,12 +61,12 @@ function SignupPrompt() {
         const requestOptions = {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            mode: "cors",
+            mode: "cors", /*CR: Look into what cors is*/
             body: JSON.stringify(formData)
         };
 
         /*Actual API call to the endpoint and our provided information*/
-        fetch("/auth/signup", requestOptions)
+        fetch("http://localhost:5000/api/users", requestOptions)
             /*Getting the response and changing it to json format*/
             .then((res) => res.json())
             /*Logging the correct information on success*/
@@ -185,6 +186,7 @@ function SignupPrompt() {
                                 type="number"
                                 className="user-input"
                                 min="1" //Used so that user cannot put negative values as their age
+                                //CR: Change minimum age to 18
                                 required
                             />
                         </div>
