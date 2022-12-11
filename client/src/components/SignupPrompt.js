@@ -28,8 +28,7 @@ function SignupPrompt() {
         firstname: "",
         lastname: "",
         location: "",
-        /*CR: Change default age to 18*/
-        age: 1,
+        age: 18,
         gender: "",
         bio: "",
     })
@@ -77,7 +76,7 @@ function SignupPrompt() {
             /*Logging error if API call was unsuccessful*/
             .catch((err) => console.log('error'))
         /*Navigate back to home page for now until match page is made*/
-        nav("/");
+        nav("/loading");
         /*Reload the window after navigating the user to the page*/
         window.location.reload();
     }
@@ -185,8 +184,7 @@ function SignupPrompt() {
                                 value={formData.age}
                                 type="number"
                                 className="user-input"
-                                min="1" //Used so that user cannot put negative values as their age
-                                //CR: Change minimum age to 18
+                                min="18" //Used so that user cannot put negative values as their age
                                 required
                             />
                         </div>

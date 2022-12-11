@@ -1,19 +1,24 @@
-/*Creates the gradient background color for the login/signup page*/
+/*Creates the gradient background color for the login/signup page from a salmon color to yellow color*/
 .info-page {
     background-image: linear-gradient(to right, #ff5e58 , #fff446);
+    /*Allows the styling to reach the entirety of the browser*/
     min-height: 100vh;
 }
 
-/*Styling for the centered text of the login/signup card*/
+/*Styling for the centered text of the login/signup page*/
 .header {
+    /*Indicates font color*/
     color: white;
+    /*Allows for font to be "thicker" for better visibility*/
     font-weight: 800;
+    /*Increases font size*/
     font-size: 50px;
 }
 
-/*Aligns info in the login/signup card component and provides sizing*/
+/*Aligns info in the login/signup card component to be centered and provides sizing*/
 .login-card {
     background-color: white;
+    /*Following styles used to center all components/texts in the card*/
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -22,7 +27,7 @@
     height: 560px;
 }
 
-/*Styling for the prompt page since the card contains more info*/
+/*Styling for card used for user sign up*/
 .prompt-card {
     background-color: white;
     justify-content: center;
@@ -33,17 +38,19 @@
     width: 600px;
 }
 
-/*Changes font width for each textbox label*/
+/*Changes font weight for each textbox label to be more visible*/
 label {
     font-weight: 600;
 }
 
-/*Provides sizing for the icon displayed inside each label*/
+/*Provides sizing for the icon displayed inside each input for the login page*/
 .icon {
     padding: 4px;
     position: absolute;
     top: 25%;
+    /*provides space from the left side of the input*/
     left:2px;
+    /*centers the icon vertically inside the input box*/
     transform: translateY(-50%);
     height: 20px;
 }
@@ -55,18 +62,27 @@ label {
     margin-bottom: 10px;
 }
 
+/*Textbox styling for the signup/login/prompt pages*/
+.login-input {
+    height: 40px;
+    width: 350px;
+    margin-bottom: 10px;
+    padding-left: 40px;
+}
+
 /*Used for error message on login/signup/prompt page which appears*/
 .error {
     display: block;
     background-color: white;
     color: red;
+    /*Used to ensure the message never extends past the available space*/
     width: fit-content;
     height: 20px;
     padding: 5px;
 }
 
 /*Div styling which contains the actual error messaging, mostly for positioning*/
-.messages{
+.messages {
     display: flex;
     justify-content: center;
 }

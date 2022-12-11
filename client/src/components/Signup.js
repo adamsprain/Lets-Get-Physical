@@ -14,8 +14,7 @@ function Signup() {
 
     const [username, setUsername] = useState(""); //username state defaulted to an empty string
     const [password, setPassword] = useState(""); //password state defaulted to an empty string
-    //CR: Change variable name to be more self explanatory
-    const [password2, setPassword2] = useState(""); //re-enter password state defaulted to an empty string
+    const [reEnteredPass, setReEnteredPass] = useState(""); //re-enter password state defaulted to an empty string
     const [email, setEmail] = useState(""); //email state defaulted to an empty string
     const [phoneNumber, setPhoneNumber] = useState(""); //phone number state defaulted to an empty string
     const [errorMessage, setErrorMessage] = useState(""); //error message state defaulted to an empty string
@@ -24,14 +23,14 @@ function Signup() {
     //if no errors are found, navigates user to prompt page and sends states of provided info to that page
     const handleSubmit = () => {
         //checks for any empty fields
-        if (username === "" || password === "" || password2 === "" || email === "" || phoneNumber === "") {
+        if (username === "" || password === "" || reEnteredPass === "" || email === "" || phoneNumber === "") {
             //updates the state of the error message
             setErrorMessage("Please complete all the fields")
             return;
         }
         //checks to make sure the re-entered password matches
         //CR: Add flagging so error message stays up to date with states of all inputs
-        if (password !== password2) {
+        if (password !== reEnteredPass) {
             setErrorMessage("Passwords do not match")
             return;
         }
@@ -82,7 +81,7 @@ function Signup() {
     };
     //changes the state of the second password by getting the value inside of the component which calls this method
     const handlePassword2 = (e) => {
-        setPassword2(e.target.value);
+        setReEnteredPass(e.target.value);
     }
     //changes the state of the phone number by getting the value inside of the component which calls this method
     const handlePhoneNumber = (e) => {
@@ -159,7 +158,7 @@ function Signup() {
                             <input
                                 id="pass2"
                                 onChange={handlePassword2}
-                                value={password2}
+                                value={reEnteredPass}
                                 type="password"
                                 className="user-input"
                                 minLength="8"
@@ -209,8 +208,7 @@ function Signup() {
                                     }}
                                     onClick={handleSubmit}
                             >
-                                {/*CR: Change to "next" button*/}
-                                Create Account
+                                Next
                             </Button>
                         </div>
                         {/*A hidden div which displays an error message if the user does not fill out

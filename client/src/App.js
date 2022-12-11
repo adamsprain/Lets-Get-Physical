@@ -5,6 +5,8 @@ import Signup from './components/Signup';
 import Navbar from './components/Navbar';
 import {Route, Routes} from "react-router-dom";
 import SignupPrompt from "./components/SignupPrompt";
+import LoaderPage from "./components/LoaderPage";
+import Match from "./components/Match";
 
 //general controller for the entire application
 class App extends React.Component {
@@ -19,6 +21,8 @@ class App extends React.Component {
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup/>} />
                     <Route path="/prompt" element={<SignupPrompt/>} />
+                    <Route path="/loading" element={<LoaderPage/>} />
+                    <Route path="/match" element={<Match/>} />
                 </Routes>
             </div>
         );
