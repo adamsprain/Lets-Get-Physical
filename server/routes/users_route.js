@@ -5,8 +5,11 @@ const express = require("express");
 const user_router = express.Router();
 
 /**
- * This router handles user GET requests
- * @return will return all user documents in id order lowest to highest
+ * This handler handles get requests to "/" and allows client to get all users in database (NOT RECOMMENDED)
+ *
+ * @param {file} req is the HTTP request from the front end, no JSON is required as this is getting all users
+ * @param {file} res is the HTTP response that will be sent in response to client, can contain errors
+ * @return res, will contain all user documents in id order lowest to highest
  */
 user_router.get("/", async (req, res) => {
     // Find all users and sort in reverse order
@@ -16,9 +19,11 @@ user_router.get("/", async (req, res) => {
 })
 
 /** This router handles user POST requests
- * @param {File} req: Must be fed a JSON document, see user_model.js for schema
- * @error If post fails, will throw 500 error (unexpected error during request),
+ * @param {File} req is the HTTP request from the front end, must contain a JSON document, see user_model.js for schema
+ * @param {File} res is the HTTP is the HTTP response that will be sent in response to client, will containt error on failure
+ * @error If post fails, will throw 500 error (unexpected error during request)
  * and error will be logged to console
+ * @return res if there is an error, otherwise will complete without return
 */
 user_router.post("/", async (req, res) => {
     // Pull user information from request
