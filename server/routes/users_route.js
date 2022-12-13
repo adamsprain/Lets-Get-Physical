@@ -10,6 +10,24 @@ user_router.get("/", async (req, res) => {
     res.send(users)
 })
 
+/**
+ * This handler handles all get requests for one user
+ * @param req is the HTTP request that must contain an id field
+ * @param res is the HTTP response that will be sent to the client, will contain user and status code
+ * @return the status of the request and the user if found
+ * status code 200 if user has been found in database and has been returned
+ * status code 404 if user has not been found in database
+ */
+user_router.get("/one_user", async (req, res) => {
+    let conditions = {_id: req.params.id};
+    User.findById(conditions, req.body)
+    .exec()
+    .then(doc => {
+        if(!doc) {return res.status(404).end();}
+        return res.status(200).end();
+    })
+})
+
 /** This router handle user POST requests
  * @param {File} req: Must be fed a JSON document of the following style:
  {
@@ -32,7 +50,7 @@ user_router.get("/", async (req, res) => {
 user_router.post("/", async (req, res) => {
     // Pull user information from request
     const { username, password, firstname, lastname, age, location, bio, gender, email, phonenumber } = req.body;
-    
+
     User.findOne({username:username}, (err, user) => { // check whether username already exists in database
         if(user) {
             res.status(400).send("username already exists")
@@ -41,14 +59,14 @@ user_router.post("/", async (req, res) => {
         else {
             // Create user object from user information
             const user = new User({
-                username, 
-                password, 
-                firstname, 
-                lastname, 
-                age, 
-                location, 
-                bio, 
-                gender, 
+                username,
+                password,
+                firstname,
+                lastname,
+                age,
+                location,
+                bio,
+                gender,
                 email,
                 phonenumber
             });
@@ -64,7 +82,7 @@ user_router.post("/", async (req, res) => {
             })
         }
     })
-    
+
 })
 
 /** This router handle user login requests
@@ -89,10 +107,10 @@ user_router.post("/login", async (req, res) => {
             } else {
                 res.status(403).send("Wrong password")
             }
-        } else { 
+        } else {
             res.status(404).send("Username not found")
         }
-    }) 
+    })
 })
 
 
