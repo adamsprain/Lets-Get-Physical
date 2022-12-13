@@ -16,7 +16,6 @@ user_router.get("/", async (req, res) => {
     // Required:
     "username": String,
     "password": String,
-    // Optionals:
     "firstname": String,
     "lastname": String,
     "age": Number (int),
@@ -26,6 +25,7 @@ user_router.get("/", async (req, res) => {
     "email": String,
     "phonenumber": String
  }
+ * status code 500 - for any error during process
 */
 user_router.post("/", async (req, res) => {
     // Pull user information from request
@@ -64,6 +64,9 @@ user_router.post("/", async (req, res) => {
     "username": String,
     "password": String,
  }
+ * status code 200 - successful login
+ * status code 403 - wrong password input
+ * status code 404 - username not found in database
 */
 user_router.post("/login", async (req, res) => {
     // Pull user information from request
@@ -79,11 +82,8 @@ user_router.post("/login", async (req, res) => {
         } else {
             res.status(404).send("Username not found")
         }
-    })
-
-    
+    }) 
 })
-
 
 
 /** This router handle user UPDATE requests
@@ -101,16 +101,19 @@ user_router.post("/login", async (req, res) => {
     "email": String,
     "phonenumber": String
  }
+ * status code 200 - successful update
+ * status code 404 - unsuccessful update because account not found
 */
 user_router.put("/:id", async (req, res) => {
     // Update user record by id
-    let conditions = {_id: req.params.id};
-    User.findByIdAndUpdate(conditions, req.body)
-    .exec()
+    let conditions = {_id: req.params.id}; // req.params.id is from :id in the api
+    User.findByIdAndUpdate(conditions, req.body) // req.body is the body sent in json format from frontend
+    .exec() // convert to full-fledged promise
     .then(doc => {
         if (!doc) { return res.status(404).end(); }
         return res.status(200).end();
     })
+    .catch(err => next(err));
 })
 
 /** This router handle user DELETE requests
@@ -119,12 +122,14 @@ user_router.put("/:id", async (req, res) => {
     // Required:
     "_id" : String
  }
+ * status code 204 - successful deletion
+ * status code 404 - unsuccessful deletion because account not found
 */
 user_router.delete("/:id", async (req, res) => {
     // Delete user record by id
     User
-    .findByIdAndRemove(req.params.id)
-    .exec()
+    .findByIdAndRemove(req.params.id) // req.params.id is from :id in the api
+    .exec()  // convert to full-fledged promise
     .then(doc => {
         if (!doc) {return res.status(404).end(); }
         return res.status(204).end();
