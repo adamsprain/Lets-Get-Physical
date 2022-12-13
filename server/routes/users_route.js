@@ -1,8 +1,7 @@
 /**
  * @file Router handling user requests
  * @author Adam Sprain, Wesley Burnawan
- * @version 2.0 Wesley Burnawan added put and delete requests
- *
+ * @version 2.0 Wesley Burnawan added put and delete requests, added check to put request to check username unique
  */
 const { User } = require("../models/user_model");
 const express = require("express");
@@ -27,8 +26,7 @@ user_router.get("/", async (req, res) => {
 /** This router handles user POST requests
  * @param {File} req is the HTTP request from the front end, must contain a JSON document, see user_model.js for schema
  * @param {File} res is the HTTP is the HTTP response that will be sent in response to client, will containt error on failure
- * @error If post fails, will throw 500 error (unexpected error during request)
- * and error will be logged to console
+ * @throws 500 error (unexpected error during request) if post fails and error will be logged to console
  * @return res if there is an error, otherwise will complete without return
 */
 user_router.post("/", async (req, res) => {
