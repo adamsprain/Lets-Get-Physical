@@ -26,9 +26,10 @@ user_router.get("/", async (req, res) => {
 /** This router handles user POST requests
  * @param {File} req is the HTTP request from the front end, must contain a JSON document, see user_model.js for schema
  * @param {File} res is the HTTP is the HTTP response that will be sent in response to client, will containt error on failure
- * @throws 500 error (unexpected error during request) if post fails and error will be logged to console
- * @throws 400 error if username already exists in database
  * @return res if there is an error, otherwise will complete without return
+ * status code 201 - successful account creation
+ * status code 400 - username already exists
+ * status code 500 - for any other error during process
 */
 user_router.post("/", async (req, res) => {
     // Pull user information from request
