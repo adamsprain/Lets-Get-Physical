@@ -1,3 +1,8 @@
+/**
+ * @file manages the server. Is the main driver for all backend functions
+ * @author Adam Sprain
+ * @version
+ */
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
