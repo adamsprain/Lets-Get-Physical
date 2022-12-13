@@ -1,3 +1,15 @@
+.Page {
+    min-height: 100vh;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translate(-50%,-50%);
+}
+
 /*Basic styling for the button which will be used throughout the site*/
 .main-button {
     background-color: #FF705C !important;

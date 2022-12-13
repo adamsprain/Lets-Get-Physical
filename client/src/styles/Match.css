@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script');
+.match-label {
+    margin-top: 30px;
+    font-size: 80px;
+    font-weight: 500;
+    font-family: "Dancing Script", sans-serif;
+}
+
+.profile-picture {
+    width: 450px;
+}
+
+.contact-button {
+    height: 20%;
+}
+.user-info {
+    font-size: 25px;
+    margin: 0;
+}
+
+.self-info {
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.match-icon {
+    position: absolute;
+    padding-top: 6px;
+
+}

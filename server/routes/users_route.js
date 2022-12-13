@@ -8,7 +8,7 @@
 const { User } = require("../models/user_model");
 const express = require("express");
 
-// This router will be used to interface the front end with backend
+// This router will return all users in database
 const user_router = express.Router();
 
 /**
@@ -20,7 +20,7 @@ const user_router = express.Router();
  */
 user_router.get("/", async (req, res) => {
     // Find all users and sort in reverse order
-    const users = await User.find().sort({ _id: -1 })
+    const users = await User.find().sort({ unique_user_id: -1 })
     // Returns user object to requestee
     res.send(users)
 })
@@ -36,32 +36,67 @@ user_router.post("/", async (req, res) => {
     // Pull user information from request
     const { username, password, firstname, lastname, age, location, bio, gender, email, phonenumber } = req.body;
 
-    // Create user object from user information
-    let user = new User({
-        username,
-        password,
-        firstname,
-        lastname,
-        age,
-        location,
-        bio,
-        gender,
-        email,
-        phonenumber
-    });
+    User.findOne({username:username}, (err, user) => { // check whether username already exists in database
+        if(user) {
+            res.status(400).send("username already exists")
+        }
 
-    try{
-        // Create user document, once complete send to database
-        user = await user.save();
-        res.send(user);
-    } catch (error) { // If unsuccessful, and error will be thrown
-        // 500 = server error occured, send client error
-        res.status(500).send(error.message);
-        // Log error for debugging
-        console.log(error.message);
-    }
+        else {
+            // Create user object from user information
+            const user = new User({
+                username,
+                password,
+                firstname,
+                lastname,
+                age,
+                location,
+                bio,
+                gender,
+                email,
+                phonenumber
+            });
+
+            user.save(err=>{ // save the user in the database
+                if(err) { // send an error message if an error occured
+                    res.status(500).send(err)
+                    console.log(err.message)
+                }
+                else { // send successful message if process is done
+                    res.status(201).send("account creation successful")
+                }
+            })
+        }
+    })
+
 })
 
+/** This router handle user login requests
+ * @param {File} req: Must be fed a JSON document of the following style:
+ {
+    // Required:
+    "username": String,
+    "password": String,
+ }
+ * status code 200 - successful login
+ * status code 403 - wrong password input
+ * status code 404 - username not found in database
+*/
+user_router.post("/login", async (req, res) => {
+    // Pull user information from request
+    const { username, password } = req.body;
+
+    User.findOne({username: username}, (err, user) => { // check whether the provided username from frontend exists
+        if(user) { // if an account is found in database
+            if(password === user.password) { // check if password given from frontend match the password in database
+                res.status(200).send("Login successful")
+            } else {
+                res.status(403).send("Wrong password")
+            }
+        } else {
+            res.status(404).send("Username not found")
+        }
+    })
+})
 
 
 /** This router handle user UPDATE requests
@@ -79,16 +114,19 @@ user_router.post("/", async (req, res) => {
     "email": String,
     "phonenumber": String
  }
+ * status code 201 - successful update
+ * status code 404 - unsuccessful update because account not found
 */
 user_router.put("/:id", async (req, res) => {
     // Update user record by id
-    let conditions = {_id: req.params.id};
-    User.findByIdAndUpdate(conditions, req.body)
-    .exec()
+    let conditions = {_id: req.params.id}; // req.params.id is from :id in the api
+    User.findByIdAndUpdate(conditions, req.body) // req.body is the body sent in json format from frontend
+    .exec() // convert to full-fledged promise
     .then(doc => {
         if (!doc) { return res.status(404).end(); }
-        return res.status(200).end();
+        return res.status(201).end();
     })
+    .catch(err => next(err));
 })
 
 /** This router handle user DELETE requests
@@ -97,12 +135,14 @@ user_router.put("/:id", async (req, res) => {
     // Required:
     "_id" : String
  }
+ * status code 204 - successful deletion
+ * status code 404 - unsuccessful deletion because account not found
 */
 user_router.delete("/:id", async (req, res) => {
     // Delete user record by id
     User
-    .findByIdAndRemove(req.params.id)
-    .exec()
+    .findByIdAndRemove(req.params.id) // req.params.id is from :id in the api
+    .exec()  // convert to full-fledged promise
     .then(doc => {
         if (!doc) {return res.status(404).end(); }
         return res.status(204).end();

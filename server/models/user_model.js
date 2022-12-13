@@ -11,7 +11,6 @@ const userSchema = new mongoose.Schema({
     // Required:
     username: { type: String, required: true},
     password: { type: String, required: true},
-    // Optional:
     firstname: { type: String, default: "FirstName"},
     lastname: { type: String, default: "LastName"},
     age: { type: Number, default: 18},
@@ -19,7 +18,7 @@ const userSchema = new mongoose.Schema({
     bio: { type: String, default: "This user does not have a bio"},
     gender: {type: String, default: "Not specified"},
     email: {type: String, default: "Not specified"},
-    phonenumber: {type: String}
+    phonenumber: {type: Number}
 });
 
 // Creates wrapper for mongoose schema as a model
