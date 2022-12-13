@@ -1,24 +1,31 @@
 const { User } = require("../models/user_model");
 const express = require("express");
 
-// This router will be used to interface the front end with backend
+// This router will return all users in database
 const user_router = express.Router();
-
-/**
- * This router handles user GET requests
- * @return will return all user documents in id order lowest to highest
- */
 user_router.get("/", async (req, res) => {
     // Find all users and sort in reverse order
-    const users = await User.find().sort({ _id: -1 })
+    const users = await User.find().sort({ unique_user_id: -1 })
     // Returns user object to requestee
     res.send(users)
 })
 
-/** This router handles user POST requests
- * @param {File} req: Must be fed a JSON document, see user_model.js for schema
- * @error If post fails, will throw 500 error (unexpected error during request),
- * and error will be logged to console
+/** This router handle user POST requests
+ * @param {File} req: Must be fed a JSON document of the following style:
+ {
+    // Required:
+    "username": String,
+    "password": String,
+    // Optionals:
+    "firstname": String,
+    "lastname": String,
+    "age": Number (int),
+    "location": String,
+    "bio" : String,
+    "gender": String,
+    "email": String,
+    "phonenumber": String
+ }
 */
 user_router.post("/", async (req, res) => {
     // Pull user information from request
@@ -26,14 +33,14 @@ user_router.post("/", async (req, res) => {
 
     // Create user object from user information
     let user = new User({
-        username,
-        password,
-        firstname,
-        lastname,
-        age,
-        location,
-        bio,
-        gender,
+        username, 
+        password, 
+        firstname, 
+        lastname, 
+        age, 
+        location, 
+        bio, 
+        gender, 
         email,
         phonenumber
     });
@@ -48,6 +55,33 @@ user_router.post("/", async (req, res) => {
         // Log error for debugging
         console.log(error.message);
     }
+})
+
+/** This router handle user login requests
+ * @param {File} req: Must be fed a JSON document of the following style:
+ {
+    // Required:
+    "username": String,
+    "password": String,
+ }
+*/
+user_router.post("/login", async (req, res) => {
+    // Pull user information from request
+    const { username, password } = req.body;
+
+    User.findOne({username: username}, (err, user) => {
+        if(user) {
+            if(password === user.password) {
+                res.status(200).send("Login successful")
+            } else {
+                res.status(403).send("Wrong password")
+            }
+        } else {
+            res.status(404).send("Username not found")
+        }
+    })
+
+    
 })
 
 
