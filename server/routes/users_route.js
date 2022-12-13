@@ -4,7 +4,6 @@
  * @version 2.0 Wesley Burnawan added put and delete requests
  *
  */
-
 const { User } = require("../models/user_model");
 const express = require("express");
 
