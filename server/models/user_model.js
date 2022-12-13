@@ -1,3 +1,8 @@
+/**
+ * @file is the schema for Users in MongoDB server
+ * @author Adam Sprain, Wesley Burnawan
+ * @version 2.0 Wesley Burnawan changed fields to fit new model for user info
+ */
 const mongoose = require("mongoose");
 
 // Creates a template for components to create documents to

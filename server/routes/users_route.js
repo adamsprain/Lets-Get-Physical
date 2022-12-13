@@ -1,8 +1,21 @@
+/**
+ * @file Router handling user requests
+ * @author Adam Sprain, Wesley Burnawan
+ * @version 2.1 Adam Sprain added documentation changes
+ */
 const { User } = require("../models/user_model");
 const express = require("express");
 
 // This router will return all users in database
 const user_router = express.Router();
+
+/**
+ * This handler handles get requests to "/" and allows client to get all users in database (NOT RECOMMENDED)
+ *
+ * @param {file} req is the HTTP request from the front end, no JSON is required as this is getting all users
+ * @param {file} res is the HTTP response that will be sent in response to client, can contain errors
+ * @return res, will contain all user documents in id order lowest to highest
+ */
 user_router.get("/", async (req, res) => {
     // Find all users and sort in reverse order
     const users = await User.find().sort({ unique_user_id: -1 })
@@ -10,21 +23,10 @@ user_router.get("/", async (req, res) => {
     res.send(users)
 })
 
-/** This router handle user POST requests
- * @param {File} req: Must be fed a JSON document of the following style:
- {
-    // Required:
-    "username": String,
-    "password": String,
-    "firstname": String,
-    "lastname": String,
-    "age": Number (int),
-    "location": String,
-    "bio" : String,
-    "gender": String,
-    "email": String,
-    "phonenumber": String
- }
+/** This router handles user POST requests
+ * @param {File} req is the HTTP request from the front end, must contain a JSON document, see user_model.js for schema
+ * @param {File} res is the HTTP is the HTTP response that will be sent in response to client, will containt error on failure
+ * @return res if there is an error, otherwise will complete without return
  * status code 201 - successful account creation
  * status code 400 - username already exists
  * status code 500 - for any other error during process
@@ -32,7 +34,7 @@ user_router.get("/", async (req, res) => {
 user_router.post("/", async (req, res) => {
     // Pull user information from request
     const { username, password, firstname, lastname, age, location, bio, gender, email, phonenumber } = req.body;
-    
+
     User.findOne({username:username}, (err, user) => { // check whether username already exists in database
         if(user) {
             res.status(400).send("username already exists")
@@ -41,14 +43,14 @@ user_router.post("/", async (req, res) => {
         else {
             // Create user object from user information
             const user = new User({
-                username, 
-                password, 
-                firstname, 
-                lastname, 
-                age, 
-                location, 
-                bio, 
-                gender, 
+                username,
+                password,
+                firstname,
+                lastname,
+                age,
+                location,
+                bio,
+                gender,
                 email,
                 phonenumber
             });
@@ -64,7 +66,7 @@ user_router.post("/", async (req, res) => {
             })
         }
     })
-    
+
 })
 
 /** This router handle user login requests
@@ -89,10 +91,10 @@ user_router.post("/login", async (req, res) => {
             } else {
                 res.status(403).send("Wrong password")
             }
-        } else { 
+        } else {
             res.status(404).send("Username not found")
         }
-    }) 
+    })
 })
 
 

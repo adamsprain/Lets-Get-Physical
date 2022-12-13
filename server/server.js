@@ -1,3 +1,8 @@
+/**
+ * @file manages the server. Is the main driver for all backend functions
+ * @author Adam Sprain
+ * @version 1.1 Adam Sprain changed documentation and order in ordinance of Code Review 1
+ */
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
