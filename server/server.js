@@ -1,6 +1,6 @@
 /**
  * @file manages the server. Is the main driver for all backend functions
- * @author Adam Sprain <ajsprain@gmail.com>
+ * @author Adam Sprain <ajsprain@gmail.com> and Wesley Burnawan <wburnawan@wisc.edu>
  * @version 1.1 11/20/2022 Adam Sprain changed documentation and ordering in ordinance of Code Review 1
  * to improve readability
  *

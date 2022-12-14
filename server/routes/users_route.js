@@ -1,6 +1,6 @@
 /**
  * @file Router handling user requests
- * @author Adam Sprain, Wesley Burnawan
+ * @author Adam Sprain <ajsprain@gmail.com> and Wesley Burnawan <wburnawan@wisc.edu>
  * @version 2.2 12/13/2022 Wesley Burnawan added check for unique username in account creation
  *
  * @summary users_route creates multiple handlers for HTTP requests from client.

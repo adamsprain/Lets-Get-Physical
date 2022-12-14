@@ -1,6 +1,6 @@
 /**
  * @file is the schema for Users in MongoDB server
- * @author Adam Sprain, Wesley Burnawan
+ * @author Adam Sprain <ajsprain@gmail.com> and Wesley Burnawan <wburnawan@wisc.edu>
  * @version 2.1 12/13/2022 Wesley Burnawan changed fields to fit new phone number formating
  *
  * @summary This schema is used to create users and validate logins to Lets Get Physical
