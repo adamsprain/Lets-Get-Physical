@@ -32,12 +32,16 @@ user_router.get("/", async (req, res) => {
  * status code 404 if user has not been found in database
  */
 user_router.get("/one_user", async (req, res) => {
+    // Gets the desired search id from request
     let conditions = req.body._id
+    // Search for ID, error if not found and send to user if found
     User.findById(conditions, (err, user) => {
         if(!user) {
+            // 404 status shows that user not found
             return res.status(404).end()
         }
         else {
+            // Send user and send 200 status to acknowledge completion
             res.send(user)
             return res.status(200).end()
         }
