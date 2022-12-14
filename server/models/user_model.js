@@ -1,7 +1,7 @@
 /**
  * @file is the schema for Users in MongoDB server
  * @author Adam Sprain, Wesley Burnawan
- * @version 2.0 Wesley Burnawan changed fields to fit new model for user info
+ * @version 2.1 12/13/2022 Wesley Burnawan changed fields to fit new phone number formating
  *
  * @summary This schema is used to create users and validate logins to Lets Get Physical
  * page. It is used by mongoose to create JSON documents to submit to MongoDB for account creation

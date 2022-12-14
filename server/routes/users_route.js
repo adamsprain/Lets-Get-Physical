@@ -1,7 +1,10 @@
 /**
  * @file Router handling user requests
  * @author Adam Sprain, Wesley Burnawan
- * @version 2.1 Adam Sprain added documentation changes
+ * @version 2.2 12/13/2022 Wesley Burnawan added check for unique username in account creation
+ *
+ * @summary users_route creates multiple handlers for HTTP requests from client.
+ * This allows for account creation, recall, editing, and deletion by HTTP request.
  */
 const { User } = require("../models/user_model");
 const express = require("express");
@@ -21,32 +24,6 @@ user_router.get("/", async (req, res) => {
     const users = await User.find().sort({ unique_user_id: -1 })
     // Returns user object to requestee
     res.send(users)
-})
-
-/**
- * This handler handles all get requests for one user
- * @param req is the HTTP request that must contain an id field
- * @param res is the HTTP response that will be sent to the client, will contain user and status code
- * @return the status of the request and the user if found
- * status code 200 if user has been found in database and has been returned
- * status code 404 if user has not been found in database
- */
-user_router.get("/one_user", async (req, res) => {
-    // Gets the desired search id from request
-    let conditions = req.body._id
-    // Search for ID, error if not found and send to user if found
-    User.findById(conditions, (err, user) => {
-        if(!user) {
-            // 404 status shows that user not found
-            return res.status(404).end()
-        }
-        else {
-            // Send user and send 200 status to acknowledge completion
-            res.send(user)
-            return res.status(200).end()
-        }
-    })
-
 })
 
 /**
