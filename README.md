@@ -54,7 +54,7 @@ Please contact any of the following team members who contribute to this project.
 | Name             | Contact Information |
 | ---------------- | ------------------- |
 | Leo Brunette     | lrbrunette@wisc.edu |
-| Adam Sprain      |                     |
+| Adam Sprain      | ajsprain@wisc.edu   |
 | Holly Qian       |                     |
 | Wesley Burnawan  |                     |
 | Adilnur Istekov  |                     |

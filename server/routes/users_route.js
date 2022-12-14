@@ -1,8 +1,21 @@
+/**
+ * @file Router handling user requests
+ * @author Adam Sprain, Wesley Burnawan
+ * @version 2.1 Adam Sprain added documentation changes
+ */
 const { User } = require("../models/user_model");
 const express = require("express");
 
 // This router will return all users in database
 const user_router = express.Router();
+
+/**
+ * This handler handles get requests to "/" and allows client to get all users in database (NOT RECOMMENDED)
+ *
+ * @param {file} req is the HTTP request from the front end, no JSON is required as this is getting all users
+ * @param {file} res is the HTTP response that will be sent in response to client, can contain errors
+ * @return res, will contain all user documents in id order lowest to highest
+ */
 user_router.get("/", async (req, res) => {
     // Find all users and sort in reverse order
     const users = await User.find().sort({ unique_user_id: -1 })
@@ -32,21 +45,32 @@ user_router.get("/one_user", async (req, res) => {
 
 })
 
-/** This router handle user POST requests
- * @param {File} req: Must be fed a JSON document of the following style:
- {
-    // Required:
-    "username": String,
-    "password": String,
-    "firstname": String,
-    "lastname": String,
-    "age": Number (int),
-    "location": String,
-    "bio" : String,
-    "gender": String,
-    "email": String,
-    "phonenumber": String
- }
+/**
+ * This handler handles all get requests for one user
+ * @param req is the HTTP request that must contain an id field
+ * @param res is the HTTP response that will be sent to the client, will contain user and status code
+ * @return the status of the request and the user if found
+ * status code 200 if user has been found in database and has been returned
+ * status code 404 if user has not been found in database
+ */
+user_router.get("/one_user", async (req, res) => {
+    let conditions = req.body._id
+    User.findById(conditions, (err, user) => {
+        if(!user) {
+            return res.status(404).end()
+        }
+        else {
+            res.send(user)
+            return res.status(200).end()
+        }
+    })
+
+})
+
+/** This router handles user POST requests
+ * @param {File} req is the HTTP request from the front end, must contain a JSON document, see user_model.js for schema
+ * @param {File} res is the HTTP is the HTTP response that will be sent in response to client, will containt error on failure
+ * @return res if there is an error, otherwise will complete without return
  * status code 201 - successful account creation
  * status code 400 - username already exists
  * status code 500 - for any other error during process
