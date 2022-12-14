@@ -17,22 +17,24 @@ const user_router = express.Router();
  *
  * @param {file} req is the HTTP request from the front end, no JSON is required as this is getting all users
  * @param {file} res is the HTTP response that will be sent in response to client, can contain errors
- * @return res, will contain all user documents in id order lowest to highest
  */
 user_router.get("/", async (req, res) => {
     // Find all users and sort in reverse order
-    const users = await User.find().sort({ unique_user_id: -1 })
+    const users = await User.find().sort({ _id: -1 })
     // Returns user object to requestee
     res.send(users)
 })
 
 /**
- * This handler handles all get requests for one user
- * @param req is the HTTP request that must contain an id field
+ * This handler handles all get requests to "/one_user" and allows client to get a user by its id from the database
+ * @param req is the HTTP request that must contain an id field, must be fed a JSON of the following style:
+   {
+        _id: Number
+   }
  * @param res is the HTTP response that will be sent to the client, will contain user and status code
  * @return the status of the request and the user if found
- * status code 200 if user has been found in database and has been returned
- * status code 404 if user has not been found in database
+ * status code 200 - user has been found in database and has been sent as response
+ * status code 404 - user has not been found in database
  */
 user_router.get("/one_user", async (req, res) => {
     let conditions = req.body._id
@@ -48,10 +50,9 @@ user_router.get("/one_user", async (req, res) => {
 
 })
 
-/** This router handles user POST requests
+/** This hander handles user creation requests to the "/" address
  * @param {File} req is the HTTP request from the front end, must contain a JSON document, see user_model.js for schema
- * @param {File} res is the HTTP is the HTTP response that will be sent in response to client, will containt error on failure
- * @return res if there is an error, otherwise will complete without return
+ * @param {File} res is the HTTP response that will be sent in response to client, will containt error on failure
  * status code 201 - successful account creation
  * status code 400 - username already exists
  * status code 500 - for any other error during process
@@ -94,13 +95,14 @@ user_router.post("/", async (req, res) => {
 
 })
 
-/** This router handle user login requests
- * @param {File} req: Must be fed a JSON document of the following style:
+/** This handler handles user login requests to the "/login" address
+ * @param {File} req  is the HTTP request from the front end, must be fed a JSON document of the following style:
  {
     // Required:
     "username": String,
     "password": String,
  }
+ * @param {File} res is the HTTP response that will be sent in response to client, will containt error on failure
  * status code 200 - successful login
  * status code 403 - wrong password input
  * status code 404 - username not found in database
@@ -123,7 +125,7 @@ user_router.post("/login", async (req, res) => {
 })
 
 
-/** This router handle user UPDATE requests
+/** This handler handles user UPDATE requests
  * @param {File} req: Must be fed a JSON document of the following style:
  {
     // Required:
@@ -138,6 +140,7 @@ user_router.post("/login", async (req, res) => {
     "email": String,
     "phonenumber": String
  }
+ * @param {File} res is the HTTP response that will be sent in response to client, will containt error on failure
  * status code 201 - successful update
  * status code 404 - unsuccessful update because account not found
 */
@@ -153,12 +156,13 @@ user_router.put("/:id", async (req, res) => {
     .catch(err => next(err));
 })
 
-/** This router handle user DELETE requests
+/** This handler handles user DELETE requests
  * @param {File} req: Must be fed a JSON document of the following style:
  {
     // Required:
     "_id" : String
  }
+ * @param {File} res is the HTTP response that will be sent in response to client, will containt error on failure
  * status code 204 - successful deletion
  * status code 404 - unsuccessful deletion because account not found
 */
@@ -174,5 +178,5 @@ user_router.delete("/:id", async (req, res) => {
     .catch(err => next(err));
 })
 
-// Exports router for outside use
+// Exports router for client use
 module.exports = user_router;
