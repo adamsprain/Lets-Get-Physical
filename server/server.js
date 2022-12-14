@@ -1,7 +1,11 @@
 /**
  * @file manages the server. Is the main driver for all backend functions
- * @author Adam Sprain
+ * @author Adam Sprain <ajsprain@gmail.com>
  * @version 1.1 Adam Sprain changed documentation and order in ordinance of Code Review 1
+ *
+ * @summary Running npm start in the containing folder will run this file, which gives client access
+ * to backend resources. Server.js initializes express and mongoose to connect with MongoDB Atlas database
+ * allowing user creation and recall to and from the database.
  */
 const express = require("express");
 const cors = require("cors");
