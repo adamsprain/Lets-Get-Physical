@@ -19,13 +19,17 @@ user_router.get("/", async (req, res) => {
  * status code 404 if user has not been found in database
  */
 user_router.get("/one_user", async (req, res) => {
-    let conditions = {_id: req.params.id};
-    User.findById(conditions, req.body)
-    .exec()
-    .then(doc => {
-        if(!doc) {return res.status(404).end();}
-        return res.status(200).end();
+    let conditions = req.body._id
+    User.findById(conditions, (err, user) => {
+        if(!user) {
+            return res.status(404).end()
+        }
+        else {
+            res.send(user)
+            return res.status(200).end()
+        }
     })
+
 })
 
 /** This router handle user POST requests
